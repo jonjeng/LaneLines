@@ -44,9 +44,7 @@ Specifically, I calculated the slope of each detected line segment and classifie
 * Before: <img src="hough_lines_interrupted.png" width="480" alt="Notice the left line is interrupted">
 * After: <img src="hough_lines_complete.png" width="480" alt="Notice that neither line is interrupted">
 
-The slope of each lane (i.e., left and right) was calculated as the mean of the slopes of the corresponding line segments whereas the fundamental lane position was calculated as the mean of the corresponding line segment coordinates. Both values were adjusted based on previously recorded values to introduce consistency between frames (the deduced lane markings were quite jittery before this feature was introduced). The result of this is illustrated below.
-
-<video src="test_videos_output/challenge.mp4" width="480" controls>
+The slope of each lane (i.e., left and right) was calculated as the mean of the slopes of the corresponding line segments whereas the fundamental lane position was calculated as the mean of the corresponding line segment coordinates. Both values were adjusted based on previously recorded values to introduce consistency between frames (the deduced lane markings were quite jittery before this feature was introduced). To see this, refer to the output video titled challenge.mp4.
 
 After each calculation, the calculated values were saved in global variables. Before the processing of each video clip, these values would be cleared so as to address interference.
 
@@ -54,13 +52,13 @@ After each calculation, the calculated values were saved in global variables. Be
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be what would happen when ... 
+One potential shortcoming would be what would happen when lane lines are strongly curved (i.e., somewhat parabolic and very much non-linear). The lines drawn so as to extend from the horizon to the bottom of the screen are exactly linear. In the recordings used, lane lines were linear or nearly so, but it is feasible that one may encounter roads that are not so, and in such cases, the deduced lane lines would not be accurate.
 
-Another shortcoming could be ...
+Another shortcoming could be that obvious lane markings are assumed. It could be the case that lane markings are quite faded or inclement weather interferes with the vision of such markings, and in these cases, the relevant lane markings would not be inferred.
 
 
 ### 3. Suggest possible improvements to your pipeline
 
-A possible improvement would be to ...
+A possible improvement would be, in accordance with the first potential shortcoming, to incorporate the detection of polynomial lane markings - i.e., in the case of curved lanes.
 
-Another potential improvement could be to ...
+Another potential improvement could be to utilize information of previous trips in the same geographic location. Such would be invaluable if the lane markings are not visible - e.g., if the markings significantly faded and/or if there is currently inclement weather in the area.
