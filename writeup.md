@@ -41,14 +41,14 @@ In order to draw a single line on the left and right lanes, I modified the draw_
 
 Specifically, I calculated the slope of each detected line segment and classified the line segment as belonging to the left or right lane line based on its positivity. Line segments with unreasonable slopes may be useless noise and were ignored.
 
-The slope of each lane (i.e., left and right) was calculated as the mean of the slopes of the corresponding line segments whereas the fundamental lane position was calculated as the mean of the corresponding line segment coordinates. Both values were adjusted based on previously recorded values to introduce consistency between frames (the deduced lane markings were quite jittery before this feature was introduced).
+* Before: <img src="hough_lines_interrupted.png" width="480" alt="Notice the left line is interrupted">
+* After: <img src="hough_lines_complete.png" width="480" alt="Notice that neither line is interrupted">
+
+The slope of each lane (i.e., left and right) was calculated as the mean of the slopes of the corresponding line segments whereas the fundamental lane position was calculated as the mean of the corresponding line segment coordinates. Both values were adjusted based on previously recorded values to introduce consistency between frames (the deduced lane markings were quite jittery before this feature was introduced). The result of this is illustrated below.
+
+<video src="test_videos_output/challenge.mp4" width="480" controls>
 
 After each calculation, the calculated values were saved in global variables. Before the processing of each video clip, these values would be cleared so as to address interference.
-
-
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
-
-![alt text][image1]
 
 
 ### 2. Identify potential shortcomings with your current pipeline
