@@ -29,7 +29,7 @@ Before running the pipeline, I'd clear a memory of sorts of previous lane lines 
 
 <img src="masked.png" width="480" alt="Masking Result" />
 
-4. Next, I drew in the Hough lines based loosely on the gradients. For this, I also used a function in the cv2 library; namely, HoughLinesP(), with a rho parameter of 1, a theta parameter of pi/180, a threshold of 25 to account for the fact that lane markings may fade and leave less "evidence" of lane markings, a minimum line length of 25 to account for the fact that lane markings may fade and thus shorten, and a maximum line gap of 200 to account for the fact that lane markings may fade and thus leave greater space between lane markings. The result of this is illustrated below.
+4. Next, I drew in the Hough lines based loosely on the gradients. For this, I also used a function in the cv2 library; namely, HoughLinesP(), with a rho parameter of 1, a theta parameter of pi/180, a threshold of 50 to account for the fact that lane markings may fade and leave less "evidence" of lane markings, a minimum line length of 100, and a maximum line gap of 160 to account for the fact that lane markings may fade and thus leave greater space between lane markings. The result of this is illustrated below.
 
 <img src="hough_lines.png" width="480" alt="Hough Lines" />
 
@@ -55,6 +55,8 @@ After each calculation, the calculated values were saved in global variables. Be
 One potential shortcoming would be what would happen when lane lines are strongly curved (i.e., somewhat parabolic and very much non-linear). The lines drawn so as to extend from the horizon to the bottom of the screen are exactly linear. In the recordings used, lane lines were linear or nearly so, but it is feasible that one may encounter roads that are not so, and in such cases, the deduced lane lines would not be accurate.
 
 Another shortcoming could be that obvious lane markings are assumed. It could be the case that lane markings are quite faded or inclement weather interferes with the vision of such markings, and in these cases, the relevant lane markings would not be inferred.
+
+Finally, a possible shortcoming could stem from weighting the prior lane markings so heavily. It is conceivable that the position and nature of lane markings could drastically change within a short span of time. The consequences of the pipeline in conjunction with such a possibility is ameliorated by the fact that videos may have high temporal resolution (i.e., fps). It remains to be seen whether this potential shortcoming is significant and further testing (e.g., in "the real world") must be conducted to decide if this shortcoming is significant.
 
 
 ### 3. Suggest possible improvements to your pipeline
